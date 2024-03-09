@@ -17,5 +17,5 @@ ___
 - Создание файла миграции ```alembic revision --autogenerate -m "Migration Name"```
 - Обновление базы ```alembic upgrade head```
 - <u>Опционально:</u> Обновление базы до конкретной версии ```alembic upgrade 32a3231000dc```
-
+- Возврат изменений базы ```alembic downgrade -1```
 

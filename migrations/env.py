@@ -5,8 +5,8 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from app.db.models import users
-from config import DatabaseConfig
+from app.db.models import users, posts
+from settings import get_settings
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -25,19 +25,20 @@ from config import DatabaseConfig
 # target_metadata = None
 
 config = context.config
+settings = get_settings()
 
 section = config.config_ini_section
-config.set_section_option(section, "DB_USER", DatabaseConfig.DB_USER)
-config.set_section_option(section, "DB_PASS", DatabaseConfig.DB_PASS)
-config.set_section_option(section, "DB_NAME", DatabaseConfig.DB_NAME)
-config.set_section_option(section, "DB_HOST", DatabaseConfig.DB_HOST)
-config.set_section_option(section, "DB_PORT", DatabaseConfig.DB_PORT)
+config.set_section_option(section, "DB_USER", settings.db_user)
+config.set_section_option(section, "DB_PASS", settings.db_pass)
+config.set_section_option(section, "DB_NAME", settings.db_name)
+config.set_section_option(section, "DB_HOST", settings.db_host)
+config.set_section_option(section, "DB_PORT", settings.db_port)
 
 fileConfig(config.config_file_name)
 
-# target_metadata = [users.metadata, posts.metadata]
 target_metadata = [
-    users.metadata
+    users.metadata,
+    posts.metadata,
 ]
 
 
