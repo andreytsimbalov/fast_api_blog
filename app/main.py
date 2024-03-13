@@ -1,10 +1,9 @@
 import uvicorn
 from api.app import app
-from settings import get_settings
+from config import settings
 
 
 def run():
-    settings = get_settings()
     uvicorn.run(
         'main:app',
         host=settings.host,
